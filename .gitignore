@@ -5,7 +5,11 @@
 
 !att48-specs
 !att48-specs/*
+!docs
 
+!WAS_Simon_Dudler_Exercise7.md
 !ant-colony.py
+!ant-colony-task3.1.py
+!ant-colony-task3.2.py
 !ant.py
 !environment.py
