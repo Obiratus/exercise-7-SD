@@ -1,7 +1,7 @@
 {
     "name": "MCS_WAS_E7",
     "image": "mcr.microsoft.com/devcontainers/python:bookworm",
-    "postCreateCommand": "python3 -m pip install numpy",
+    "postCreateCommand": "python3 -m pip install numpy tsplib95",
     // Configure tool-specific properties.
     "customizations": {
         // Configure properties specific to VS Code.
