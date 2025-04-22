@@ -139,7 +139,7 @@ def remove_city(self, city_id):
 
 - Dynamic Evaporation Adjustments:
     - Consider temporary pheromone resets or boosts in evaporation rates to handle sudden topological changes.
-[.devcontainer](../.devcontainer)
+
 ### 3. Reactive Ant Behavior
 
 - Dynamic Tours:
