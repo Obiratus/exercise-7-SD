@@ -1,4 +1,6 @@
 # Exercise 7: Stigmergic interaction for Smart Colony Optimization
+Command for PDF
+pandoc WAS_Simon_Dudler_Exercise7.md -o WAS_Simon_Dudler_Exercise7.pdf --pdf-engine=xelatex -V geometry:margin=0.75in
 
 This repository contains a partial implementation of an Ant System algorithm \[[1],[2]\] for solving the [att48](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/tsp/) Travelling Salesman Problem instance. 
 

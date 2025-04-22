@@ -39,6 +39,24 @@ class AntColony:
 
     # Solve the ant colony optimization problem  
     def solve(self):
+        """
+        Solves the TSP using the Ant System algorithm.
+
+        This method:
+        1. Loads the environment with TSP instance data
+        2. Iteratively sends ants to construct tours
+        3. Updates pheromones based on tour quality
+        4. Tracks the best solution found
+
+        Returns:
+        - The best tour found (list of cities)
+        - The length of the best tour
+        """
+        # Load the environment with the TSP instance data
+        # self.environment.load_from_file('att48.tsp')
+
+        # Initialize random positions for ants
+        all_locations = self.environment.get_possible_locations()
 
         # The solution will be a list of the visited cities
         solution = []
@@ -46,17 +64,57 @@ class AntColony:
         # Initially, the shortest distance is set to infinite
         shortest_distance = np.inf
 
+        # Initialize ants with random starting locations
+        for ant in self.ants:
+            # Assign a random starting location to each ant
+            initial_location = np.random.choice(all_locations)
+            ant.current_location = initial_location
+            ant.visited_locations = {initial_location}
+            ant.tour = [initial_location]
+            ant.traveled_distance = 0
+
+        # Run the algorithm for the specified number of iterations
+        for iteration in range(self.iterations):
+            # Each ant constructs a tour
+            ant_tours = []
+            ant_distances = []
+
+            for ant in self.ants:
+                # Let the ant construct a complete tour
+                tour, distance = ant.run()
+                ant_tours.append(tour)
+                ant_distances.append(distance)
+
+                # Update the best solution if a better one is found
+                if distance < shortest_distance:
+                    shortest_distance = distance
+                    solution = tour.copy()
+
+            # Update pheromones using the existing method in Environment class
+            self.environment.update_pheromone_map(ant_tours, ant_distances)
+
+
+            # Optional: Print progress information
+            if iteration % 10 == 0:
+                print(f"Iteration {iteration}: Best distance = {shortest_distance}")
+
         return solution, shortest_distance
 
 
 def main():
     # Intialize the ant colony
-    ant_colony = AntColony(1, None, None, None, None)
+    # Parameters based on literature: ant_population, iterations, alpha, beta, rho
+    ant_colony = AntColony(48, 100, 1.0, 5.0, 0.5)
+
 
     # Solve the ant colony optimization problem
     solution, distance = ant_colony.solve()
-    print("Solution: ", solution)
-    print("Distance: ", distance)
+    print("\nSOLUTION")
+    print(f"Distance:  {distance}")
+    print("Tour")
+    for city in solution:
+        print(city)
+
 
 
 if __name__ == '__main__':
